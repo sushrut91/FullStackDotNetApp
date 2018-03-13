@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h3>
+    Welcome to {{ title }}!
+  </h3>
+</div>
+<div style="text-align: left">
+  <input type="radio" name="group1" value="NewDept" (click)="AddNewDeptClicked()"> Add New Department
+  <input type="radio" name="group1" value="AllDepartments"(click)="ListAllDeptsClicked()"> List all Departments
+</div>
+<div *ngIf="showHideList">
+      <ul>
+        <li *ngFor="let dept of result">{{dept.DepartmentName}} - DepartmentType: {{dept.DepartmentType}}</li>
+      </ul>
+</div>
+<div *ngIf="showHideForm">
+    <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <form (submit)="saveData(departmentModel)" #deptForm="ngForm">
+    <table>
+      <tr>
+        <td>Department Name:</td><td><input type="text" #depName="ngModel" required [(ngModel)]="departmentModel.DepartmentName" name="deptNameTxt"></td><br/>
+        <div class="alert alert-danger" [hidden]="depName.valid || depName.pristine">Department Name is requried</div>
+      </tr>
+      <tr>
+        <td>No of Employees:</td><td><input type="text" [(ngModel)]="departmentModel.NoOfEmployees" name="noEmpTxt"></td>
+      </tr>
+      <tr>
+        <td>Department Types:</td>
+        <td>
+          <select name="deptTypesDropDown" [(ngModel)]="departmentModel.DepartmentType">
+          <option *ngFor="let deptType of departmentTypeList" [ngValue]="deptType.Key">
+              {{deptType.Value}}
+          </option>
+        </select>
+      </td>
+      </tr>
+      <tr>
+        <td>Has Disabled Employees</td>
+         <td> <input type="checkbox" [(ngModel)]="departmentModel.HasDisabledEmployees" name="DisabledEmpCheckBox"></td> 
+      </tr>
+    </table>
+    <!-- <input type="button" value="Send Data" (click)="submitClick()"><br/><br/> -->
+    <input type="submit" value="Send Data Submit" [disabled]=deptForm.invalid><br/><br/>
+    <span>Response Code : {{status}}</span>
+  </form>
+{{depName.className}}
+</div>
