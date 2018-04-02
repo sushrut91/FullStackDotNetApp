@@ -16,9 +16,10 @@ namespace FullStackApp.Controllers
     public class DepartmentController : ApiController
     {
         private UnitOfWork workUnit = null;
-        public DepartmentController()
+        
+        public DepartmentController(UnitOfWork workUnit)
         {
-            workUnit = new UnitOfWork(new ApplicationDbContext());
+            this.workUnit = workUnit;
         }
         [Route("api/departments")]
         [HttpGet]

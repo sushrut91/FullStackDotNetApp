@@ -40,8 +40,19 @@ namespace FullStackApp.Controllers
             tokenBuilder.AddClaim("password", userDetails.Password);
             tokenBuilder.AddSecurityKey(key);
 
+            using (workUnit)
+            {
+                var existingUser =workUnit.Users.
+                    Find(u => u.UserName == userDetails.UserName 
+                    && u.Password == userDetails.Password).FirstOrDefault();
+                if(existingUser == null)
+                {
+                    workUnit.Users.Add(userDetails);
+                    workUnit.Complete();
+                }
+            }
             JwtToken newToken = tokenBuilder.Build();
-            return Ok(newToken);
+            return Ok(newToken.Value);
         }
 
         [Route("api/tokenUtils/authenticate")]
@@ -49,7 +60,7 @@ namespace FullStackApp.Controllers
         [AuthenticationFilter]
         public IHttpActionResult GetAuthenticateResponse()
         {
-            string status = "Successfully Authenticated!";
+            bool status = true;
             return Ok(status);
         }
     }

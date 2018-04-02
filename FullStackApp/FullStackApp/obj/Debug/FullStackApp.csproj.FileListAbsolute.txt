@@ -94,3 +94,11 @@ C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\obj\Debug\FullStackApp.p
 C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\System.IdentityModel.Tokens.Jwt.dll
 C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\System.IdentityModel.Tokens.Jwt.xml
 C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\obj\Debug\FullStackApp.Migrations.AddingAppUserTable.resources
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.dll
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.Common.dll
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.Common.WebHost.dll
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.WebApi.dll
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.xml
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.Common.xml
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.Common.WebHost.xml
+C:\Work\Angular2\FullStackApp\FullStackApp\FullStackApp\bin\Ninject.Web.WebApi.xml

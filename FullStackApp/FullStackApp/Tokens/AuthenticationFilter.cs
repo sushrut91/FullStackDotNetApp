@@ -28,20 +28,24 @@ namespace FullStackApp.Tokens
                 string token = actionContext.Request.Headers.Authorization.Parameter;
                 JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
                 JwtSecurityToken tokenDecrypt = handler.ReadJwtToken(token);
-                var usrName = tokenDecrypt.Claims.Where(c => c.Type == "userName").FirstOrDefault();
-                var passwd = tokenDecrypt.Claims.Where(c => c.Type == "password").FirstOrDefault();
-
-                if (usrName == null || passwd == null)
-                    actionContext.Response = new System.
-                        Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
-                else
+                if(!token.Equals("undefined"))
                 {
-                    JWTTokenController tokenController = new JWTTokenController();
-                    bool exists = tokenController.usrService.
-                        CheckUserExistanceInDB(usrName.Value, passwd.Value);
-                    if(!exists)
+                    var usrName = tokenDecrypt.Claims.Where(c => c.Type == "userName").FirstOrDefault();
+                    var passwd = tokenDecrypt.Claims.Where(c => c.Type == "password").FirstOrDefault();
+
+                    if (usrName == null || passwd == null)
                         actionContext.Response = new System.
-                      Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                            Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                    else
+                    {
+                        JWTTokenController tokenController = new JWTTokenController();
+                        bool exists = tokenController.usrService.
+                            CheckUserExistanceInDB(usrName.Value, passwd.Value);
+                        if (!exists)
+                            actionContext.Response = new System.
+                          Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                    }
+
                 }
             }
         }
